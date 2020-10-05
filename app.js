@@ -73,3 +73,6 @@ function command(rover, orders) {
 }
 
 command(rover, 'rfrfrff');
+
+// The Rover can leave the grid, it must be fixed.
+// Next step: Iteration 5
