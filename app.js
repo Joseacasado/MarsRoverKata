@@ -88,22 +88,27 @@ function moveBackward(rover) {
 function command(rover, orders) {
   for (let i = 0; i < orders.length; i++) {
     let order = orders[i];
-    switch (order) {
-      case 'l': // left
-        turnLeft(rover);
-        break;
-      case 'r': // rigth
-        turnRight(rover);
-        break;
-      case 'f': // fordward
-        moveForward(rover);
-        break;
-      case 'b': // backward
-        moveBackward(rover);
-        break;
+    if (order === 'l' || order === 'r' || order === 'f' || order === 'b') {
+      switch (order) {
+        case 'l': // left
+          turnLeft(rover);
+          break;
+        case 'r': // rigth
+          turnRight(rover);
+          break;
+        case 'f': // fordward
+          moveForward(rover);
+          break;
+        case 'b': // backward
+          moveBackward(rover);
+          break;
+      }
+    } else {
+      continue;
     }
   }
   console.log(`The Rover is facing ${rover.direction}`);
+  // Print the path
   console.log('** The las route of the Rover has been:');
   for (let i = 0; i < rover.travelLog.length; i++) {
     console.log(`Position ${i}: x=${rover.travelLog[i].x}, y=${rover.travelLog[i].y}`);
@@ -113,7 +118,7 @@ function command(rover, orders) {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover, 'bbrfflfrff');
+command(rover, 'aa459cnrrfb');
 
 
 // The Rover can leave the grid, it must be fixed.
