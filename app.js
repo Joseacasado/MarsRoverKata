@@ -34,33 +34,32 @@ function turnRight(rover) {
 }
 
 function moveForward(rover) {
-  switch (rover.direction) {
-    case 'N':
-      rover.y--;
-      break;
-    case 'W':
-      rover.x--;
-      break;
-    case 'S':
-      rover.y++;
-      break;
-    case 'E':
-      rover.x++;
-      break;
+  if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) {
+    switch (rover.direction) {
+      case 'N':
+        rover.y--;
+        break;
+      case 'W':
+        rover.x--;
+        break;
+      case 'S':
+        rover.y++;
+        break;
+      case 'E':
+        rover.x++;
+        break;
+    }
+    console.log(`The Rover has moved forward`);
+    console.log(`The Rover is now at x:${rover.x}, y:${rover.y}`);
+  
+    let newPosition = { x: rover.x, y: rover.y };
+    rover.travelLog.push(newPosition);
+  } else { 
+  console.log("The Rover can't leave the grid!!!");
   }
-  console.log(`The Rover has moved forward`);
-  console.log(`The Rover is now at x:${rover.x}, y:${rover.y}`);
-
-  let newPosition = { x: rover.x, y: rover.y };
-  rover.travelLog.push(newPosition);
 }
 
 function command(rover, orders) {
-  // if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) {
-
-  // } else {
-  //   console.log("The Rover can't leave the grid!!!");
-  // }
   for (let i = 0; i < orders.length; i++) {
     let order = orders[i];
     switch (order) {
