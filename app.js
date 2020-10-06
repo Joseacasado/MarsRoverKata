@@ -1,57 +1,61 @@
 // Rover object goes here:
-const rover = { direction: 'N', x: '0', y: '0'};
+const rover = { 
+  direction: 'N', 
+  x: 0, 
+  y: 0,
+  travelLog: [{ x: 0, y: 0}]
+};
 
 // ======================
 function turnLeft(rover) {
   if (rover.direction === 'N') {
     rover.direction = 'W';
-    console.log(`The Rover direction is ${rover.direction}`);
   } else if (rover.direction === 'W') {
     rover.direction = 'S';
-    console.log(`The Rover direction is ${rover.direction}`);
   } else if (rover.direction === 'S') {
     rover.direction = 'E';
-    console.log(`The Rover direction is ${rover.direction}`);
   } else {
     rover.direction = 'N';
-    console.log(`The Rover direction is ${rover.direction}`);
   }
+  console.log(`The Rover direction is ${rover.direction}`);
 }
 
 function turnRight(rover) {
   if (rover.direction === 'N') {
     rover.direction = 'E';
-    console.log(`The Rover direction is ${rover.direction}`);
   } else if (rover.direction === 'E') {
     rover.direction = 'S';
-    console.log(`The Rover direction is ${rover.direction}`);
   } else if (rover.direction === 'S') {
     rover.direction = 'W';
-    console.log(`The Rover direction is ${rover.direction}`);
   } else {
     rover.direction = 'N';
-    console.log(`The Rover direction is ${rover.direction}`);
   }
+  console.log(`The Rover direction is ${rover.direction}`);
 }
 
 function moveForward(rover) {
   if ((rover.x >= 0 && rover.x < 10) && (rover.y >= 0 && rover.y < 10)) {
     if (rover.direction === 'N') {
       rover.y--;
-      console.log(`The Rover has position x:${rover.x}, y:${rover.y}`);
     } else if (rover.direction === 'W') {
       rover.x--;
-      console.log(`The Rover has position x:${rover.x}, y:${rover.y}`);
     } else if (rover.direction === 'S') {
       rover.y++;
-      console.log(`The Rover has position x:${rover.x}, y:${rover.y}`);
     } else {
       rover.x++;
-      console.log(`The Rover has position x:${rover.x}, y:${rover.y}`);
     }
+    console.log(`The Rover has position x:${rover.x}, y:${rover.y}`);
+
+    let newPosition = { x: rover.x, y: rover.y };
+    rover.travelLog.push(newPosition);
+
   } else {
     console.log('The Rover has left the grid!!!');
   }
+}
+
+for (let i = 0; i < rover.travelLog.length; i++) {
+  console.log(`Position ${i} was x=${rover.travelLog[i].x}, y=${rover.travelLog[i].y}`);
 }
 
 function command(rover, orders) {
@@ -71,6 +75,7 @@ function command(rover, orders) {
   }
   console.log(`The Rover is facing ${rover.direction}`);
 }
+
 
 command(rover, 'rfrfrff');
 
