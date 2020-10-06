@@ -59,6 +59,32 @@ function moveForward(rover) {
   }
 }
 
+function moveBackward(rover) {
+  if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) {
+    switch (rover.direction) {
+      case 'N':
+        rover.y++;
+        break;
+      case 'W':
+        rover.x++;
+        break;
+      case 'S':
+        rover.y--;
+        break;
+      case 'E':
+        rover.x--;
+        break;
+    }
+    console.log(`The Rover has moved backward`);
+    console.log(`The Rover is now at x:${rover.x}, y:${rover.y}`);
+  
+    let newPosition = { x: rover.x, y: rover.y };
+    rover.travelLog.push(newPosition);
+  } else { 
+  console.log("The Rover can't leave the grid!!!");
+  }
+}
+
 function command(rover, orders) {
   for (let i = 0; i < orders.length; i++) {
     let order = orders[i];
@@ -71,6 +97,9 @@ function command(rover, orders) {
         break;
       case 'f': // fordward
         moveForward(rover);
+        break;
+      case 'b': // backward
+        moveBackward(rover);
         break;
     }
   }
@@ -87,7 +116,7 @@ function monitoring() {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover, 'rrfflflfff');
+command(rover, 'bbbrff');
 monitoring();
 
 
