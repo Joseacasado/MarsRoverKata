@@ -34,28 +34,33 @@ function turnRight(rover) {
 }
 
 function moveForward(rover) {
-  if ((rover.x >= 0 && rover.x < 10) && (rover.y >= 0 && rover.y < 10)) {
-    if (rover.direction === 'N') {
+  switch (rover.direction) {
+    case 'N':
       rover.y--;
-    } else if (rover.direction === 'W') {
+      break;
+    case 'W':
       rover.x--;
-    } else if (rover.direction === 'S') {
+      break;
+    case 'S':
       rover.y++;
-    } else {
+      break;
+    case 'E':
       rover.x++;
-    }
-    console.log(`The Rover has moved forward`);
-    console.log(`The Rover is now at x:${rover.x}, y:${rover.y}`);
-
-    let newPosition = { x: rover.x, y: rover.y };
-    rover.travelLog.push(newPosition);
-
-  } else {
-    console.log('The Rover has left the grid!!!');
+      break;
   }
+  console.log(`The Rover has moved forward`);
+  console.log(`The Rover is now at x:${rover.x}, y:${rover.y}`);
+
+  let newPosition = { x: rover.x, y: rover.y };
+  rover.travelLog.push(newPosition);
 }
 
 function command(rover, orders) {
+  // if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) {
+
+  // } else {
+  //   console.log("The Rover can't leave the grid!!!");
+  // }
   for (let i = 0; i < orders.length; i++) {
     let order = orders[i];
     switch (order) {
@@ -83,7 +88,7 @@ function monitoring() {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover, 'llfflffrflf');
+command(rover, 'rrfflflfff');
 monitoring();
 
 
