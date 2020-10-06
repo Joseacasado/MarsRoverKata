@@ -104,9 +104,6 @@ function command(rover, orders) {
     }
   }
   console.log(`The Rover is facing ${rover.direction}`);
-}
-
-function monitoring() {
   console.log('** The las route of the Rover has been:');
   for (let i = 0; i < rover.travelLog.length; i++) {
     console.log(`Position ${i}: x=${rover.travelLog[i].x}, y=${rover.travelLog[i].y}`);
@@ -116,8 +113,7 @@ function monitoring() {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover, 'bbbrff');
-monitoring();
+command(rover, 'bbrfflfrff');
 
 
 // The Rover can leave the grid, it must be fixed.
