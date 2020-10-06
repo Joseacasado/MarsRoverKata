@@ -6,7 +6,7 @@ const rover = {
   travelLog: [{ x: 0, y: 0}]
 };
 
-// ======================
+// ====== FUNCTIONS
 function turnLeft(rover) {
   if (rover.direction === 'N') {
     rover.direction = 'W';
@@ -44,7 +44,8 @@ function moveForward(rover) {
     } else {
       rover.x++;
     }
-    console.log(`The Rover has position x:${rover.x}, y:${rover.y}`);
+    console.log(`The Rover has moved forward`);
+    console.log(`The Rover is now at x:${rover.x}, y:${rover.y}`);
 
     let newPosition = { x: rover.x, y: rover.y };
     rover.travelLog.push(newPosition);
@@ -52,10 +53,6 @@ function moveForward(rover) {
   } else {
     console.log('The Rover has left the grid!!!');
   }
-}
-
-for (let i = 0; i < rover.travelLog.length; i++) {
-  console.log(`Position ${i} was x=${rover.travelLog[i].x}, y=${rover.travelLog[i].y}`);
 }
 
 function command(rover, orders) {
@@ -76,8 +73,18 @@ function command(rover, orders) {
   console.log(`The Rover is facing ${rover.direction}`);
 }
 
+function monitoring() {
+  console.log('** The las route of the Rover has been:');
+  for (let i = 0; i < rover.travelLog.length; i++) {
+    console.log(`Position ${i}: x=${rover.travelLog[i].x}, y=${rover.travelLog[i].y}`);
+  }
+}
 
-command(rover, 'rfrfrff');
+
+// ====== ROVER MOVEMENT / INSTRUCTIONS
+
+command(rover, 'llfflffrflf');
+monitoring();
+
 
 // The Rover can leave the grid, it must be fixed.
-// Next step: Iteration 5
