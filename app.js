@@ -1,4 +1,3 @@
-// Rover object goes here:
 const rover1 = {
   id: 1,
   direction: "N",
@@ -17,8 +16,12 @@ const rover2 = {
 
 // Obstacles:
 
-const obstacle1 = { x: 2, y: 4 };
-const obstacle2 = { x: 7, y: 6 };
+const obstacle1 = {
+  position: { x: 2, y: 4 },
+};
+const obstacle2 = {
+  position: { x: 7, y: 6 },
+};
 
 // ====== FUNCTIONS
 function turnLeft(rover) {
@@ -63,6 +66,7 @@ function moveForward(rover) {
         rover.x++;
         break;
     }
+
     console.log(`The Rover${rover.id} has moved forward`);
     console.log(`The Rover${rover.id} is now at x:${rover.x}, y:${rover.y}`);
 
@@ -135,8 +139,8 @@ function command(rover, orders) {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover1, "rfflf");
-command(rover2, 'lff');
+command(rover1, "f");
+command(rover2, "ffrfff");
 
 /* TO BE COMPLETED:
     Bonus 1 - Enforce boundaries
