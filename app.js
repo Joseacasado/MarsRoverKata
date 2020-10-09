@@ -15,16 +15,14 @@ const rover2 = {
 };
 
 // Obstacles:
-
 const obstacles = [
-  { x: 2, y: 2},
-  { x: 5, y: 1},
-  { x: 4, y: 5},
-  { x: 7, y: 6},
-  { x: 3, y: 9},
-  { x: 8, y: 8},
+  { x: 2, y: 2 },
+  { x: 5, y: 1 },
+  { x: 4, y: 5 },
+  { x: 7, y: 6 },
+  { x: 3, y: 9 },
+  { x: 8, y: 8 }
 ];
-  
 
 // ====== FUNCTIONS
 function turnLeft(rover) {
@@ -58,13 +56,16 @@ function turnRight(rover) {
 }
 
 function moveForward(rover) {
-  // if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) 
+  // if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10)
   // this if statemen doesn't work, let's try somethign else
   switch (rover.direction) {
     case "N":
       rover.y--;
-      if (rover.y < 0) {   //  **** BONUS 1 ****
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+      if (rover.y < 0) {
+        //  **** BONUS 1 ****
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.y++;
         return;
       }
@@ -72,7 +73,9 @@ function moveForward(rover) {
     case "W":
       rover.x--;
       if (rover.x < 0) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.x++;
         return;
       }
@@ -80,7 +83,9 @@ function moveForward(rover) {
     case "S":
       rover.y++;
       if (rover.y > 9) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.y--;
         return;
       }
@@ -88,7 +93,9 @@ function moveForward(rover) {
     case "E":
       rover.x++;
       if (rover.x > 9) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.x--;
         return;
       }
@@ -107,7 +114,9 @@ function moveBackward(rover) {
     case "N":
       rover.y++;
       if (rover.y > 9) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.y--;
         return;
       }
@@ -115,7 +124,9 @@ function moveBackward(rover) {
     case "W":
       rover.x++;
       if (rover.x > 9) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.x--;
         return;
       }
@@ -123,7 +134,9 @@ function moveBackward(rover) {
     case "S":
       rover.y--;
       if (rover.y < 0) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.y++;
         return;
       }
@@ -131,7 +144,9 @@ function moveBackward(rover) {
     case "E":
       rover.x--;
       if (rover.x < 0) {
-        console.log("The Rover can't leave the grid!! this order will not be executed");
+        console.log(
+          "The Rover can't leave the grid!! this order will not be executed"
+        );
         rover.x++;
         return;
       }
@@ -177,9 +192,9 @@ function command(rover, orders) {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover1, "fr3fgruf");
+command(rover1, "rffrff");
 command(rover2, "fwqr3b4nfp");
 
 /* TO BE COMPLETED:
-    Bonus 4 - Obstacles
+    Bonus 4 - Avoid collision
 */
