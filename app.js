@@ -66,6 +66,7 @@ function moveForward(rover) {
         rover.y++;
         return;
       }
+      preventCollision(rover);
       break;
     case "W":
       rover.x--;
@@ -74,6 +75,7 @@ function moveForward(rover) {
         rover.x++;
         return;
       }
+      preventCollision(rover);
       break;
     case "S":
       rover.y++;
@@ -82,6 +84,7 @@ function moveForward(rover) {
         rover.y--;
         return;
       }
+      preventCollision(rover);
       break;
     case "E":
       rover.x++;
@@ -90,6 +93,7 @@ function moveForward(rover) {
         rover.x--;
         return;
       }
+      preventCollision(rover);
       break;
   }
   console.log(`The ${rover.id} has moved forward`);
@@ -104,42 +108,38 @@ function moveBackward(rover) { // **** BONUS 2 ****
     case "N":
       rover.y++;
       if (rover.y > 9) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y--;
         return;
       }
+      preventCollision(rover);
       break;
     case "W":
       rover.x++;
       if (rover.x > 9) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.x--;
         return;
       }
+      preventCollision(rover);
       break;
     case "S":
       rover.y--;
       if (rover.y < 0) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y++;
         return;
       }
+      preventCollision(rover);
       break;
     case "E":
       rover.x--;
       if (rover.x < 0) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.x++;
         return;
       }
+      preventCollision(rover);
       break;
   }
   console.log(`The ${rover.id} has moved backward`);
@@ -179,28 +179,24 @@ function command(rover, orders) {
   }
 }
 
-function canMove(rover) {
-  if (rover.x > 10 || rover.x < 0 || rover.y > 10 || rover.y < 0) {
-    return false;
-  } else {
-    obstacles.forEach(position => {
-      if (rover.x == position.x && rover.y == position.y) {
-        console.log(`The ${rover.id} has found an obstacle at x: ${rover.x}, y: ${rover.y}`);
-        return false;
-      } else if (rover1.x == rover2.x && rover1.y == rover2.y) {
-        console.log(`The ${rover.id} will collide with another Rover. Aborted movement`);
-        return false;
-      } else {
-        return true;
-      }
-   });
-  }
+function preventCollision(rover) { // **** BONUS 4 / I can't make Rover stop after collision!!
+  obstacles.forEach(position => {
+    if (rover.x == position.x && rover.y == position.y) {
+      console.log(`The ${rover.id} has found an obstacle at x: ${rover.x}, y: ${rover.y}`);
+      return false;
+    } else if (rover1.x == rover2.x && rover1.y == rover2.y) {
+      console.log(`The ${rover.id} will collide with another Rover. Aborted movement`);
+      return false;
+    } else {
+      return true;
+    }
+  });
 }
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover1, "rffrff");
-command(rover2, "fwqr3b4nfp");
+command(rover1, "2frffmrfflhfrff9f");
+command(rover2, "ff4fff5tfrffjflplb");
 
 /* TO BE COMPLETED:
     Bonus 4 - Avoid collision
