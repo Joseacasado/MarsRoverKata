@@ -16,12 +16,15 @@ const rover2 = {
 
 // Obstacles:
 
-const obstacle1 = {
-  position: { x: 2, y: 4 },
-};
-const obstacle2 = {
-  position: { x: 7, y: 6 },
-};
+const obstacles = [
+  { x: 2, y: 2},
+  { x: 5, y: 1},
+  { x: 4, y: 5},
+  { x: 7, y: 6},
+  { x: 3, y: 9},
+  { x: 8, y: 8},
+];
+  
 
 // ====== FUNCTIONS
 function turnLeft(rover) {
@@ -60,7 +63,7 @@ function moveForward(rover) {
   switch (rover.direction) {
     case "N":
       rover.y--;
-      if (rover.y < 0) {
+      if (rover.y < 0) {   //  **** BONUS 1 ****
         console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y++;
         return;
@@ -174,10 +177,9 @@ function command(rover, orders) {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover1, "r3fgruf");
-command(rover2, "fwqr34nfp");
+command(rover1, "fr3fgruf");
+command(rover2, "fwqr3b4nfp");
 
 /* TO BE COMPLETED:
-    Bonus 1 - Enforce boundaries
     Bonus 4 - Obstacles
 */
