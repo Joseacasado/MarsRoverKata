@@ -61,11 +61,8 @@ function moveForward(rover) {
   switch (rover.direction) {
     case "N":
       rover.y--;
-      if (rover.y < 0) {
-        //  **** BONUS 1 ****
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+      if (rover.y < 0) { //  **** BONUS 1 ****
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y++;
         return;
       }
@@ -73,9 +70,7 @@ function moveForward(rover) {
     case "W":
       rover.x--;
       if (rover.x < 0) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.x++;
         return;
       }
@@ -83,9 +78,7 @@ function moveForward(rover) {
     case "S":
       rover.y++;
       if (rover.y > 9) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y--;
         return;
       }
@@ -93,9 +86,7 @@ function moveForward(rover) {
     case "E":
       rover.x++;
       if (rover.x > 9) {
-        console.log(
-          "The Rover can't leave the grid!! this order will not be executed"
-        );
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.x--;
         return;
       }
@@ -108,8 +99,7 @@ function moveForward(rover) {
   rover.travelLog.push(newPosition);
 }
 
-function moveBackward(rover) {
-  // **** BONUS 2 ****
+function moveBackward(rover) { // **** BONUS 2 ****
   switch (rover.direction) {
     case "N":
       rover.y++;
@@ -175,8 +165,7 @@ function command(rover, orders) {
       case "b": // backward
         moveBackward(rover);
         break;
-      default:
-        // none of the above **** BONUS 3 ****
+      default: // none of the above **** BONUS 3 ****
         continue;
     }
   }
@@ -187,6 +176,24 @@ function command(rover, orders) {
     console.log(
       `Position ${i}: x=${rover.travelLog[i].x}, y=${rover.travelLog[i].y}`
     );
+  }
+}
+
+function canMove(rover) {
+  if (rover.x > 10 || rover.x < 0 || rover.y > 10 || rover.y < 0) {
+    return false;
+  } else {
+    obstacles.forEach(position => {
+      if (rover.x == position.x && rover.y == position.y) {
+        console.log(`The ${rover.id} has found an obstacle at x: ${rover.x}, y: ${rover.y}`);
+        return false;
+      } else if (rover1.x == rover2.x && rover1.y == rover2.y) {
+        console.log(`The ${rover.id} will collide with another Rover. Aborted movement`);
+        return false;
+      } else {
+        return true;
+      }
+   });
   }
 }
 
