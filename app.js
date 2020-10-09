@@ -1,5 +1,5 @@
 const rover1 = {
-  id: 'Rover 1',
+  id: "Rover 1",
   direction: "N",
   x: 0,
   y: 0,
@@ -7,7 +7,7 @@ const rover1 = {
 };
 
 const rover2 = {
-  id: 'Rover 2',
+  id: "Rover 2",
   direction: "W",
   x: 9,
   y: 9,
@@ -34,7 +34,9 @@ function turnLeft(rover) {
   } else {
     rover.direction = "N";
   }
-  console.log(`The ${rover.id} has turned left, it's direction is ${rover.direction}`);
+  console.log(
+    `The ${rover.id} has turned left, it's direction is ${rover.direction}`
+  );
 }
 
 function turnRight(rover) {
@@ -47,84 +49,117 @@ function turnRight(rover) {
   } else {
     rover.direction = "N";
   }
-  console.log(`The ${rover.id} has turned right, it's direction is ${rover.direction}`);
+  console.log(
+    `The ${rover.id} has turned right, it's direction is ${rover.direction}`
+  );
 }
 
 function moveForward(rover) {
-  if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) {
-    switch (rover.direction) {
-      case "N":
-        rover.y--;
-        break;
-      case "W":
-        rover.x--;
-        break;
-      case "S":
+  // if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) 
+  // this if statemen doesn't work, let's try somethign else
+  switch (rover.direction) {
+    case "N":
+      rover.y--;
+      if (rover.y < 0) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y++;
-        break;
-      case "E":
+        return;
+      }
+      break;
+    case "W":
+      rover.x--;
+      if (rover.x < 0) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.x++;
-        break;
-    }
-
-    console.log(`The ${rover.id} has moved forward`);
-    console.log(`The ${rover.id} is now at x:${rover.x}, y:${rover.y}`);
-
-    let newPosition = { x: rover.x, y: rover.y };
-    rover.travelLog.push(newPosition);
-  } else {
-    console.log(`The ${rover.id} can't leave the grid!!!`);
-    return;
+        return;
+      }
+      break;
+    case "S":
+      rover.y++;
+      if (rover.y > 9) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
+        rover.y--;
+        return;
+      }
+      break;
+    case "E":
+      rover.x++;
+      if (rover.x > 9) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
+        rover.x--;
+        return;
+      }
+      break;
   }
+  console.log(`The ${rover.id} has moved forward`);
+  console.log(`The ${rover.id} is now at x:${rover.x}, y:${rover.y}`);
+
+  let newPosition = { x: rover.x, y: rover.y };
+  rover.travelLog.push(newPosition);
 }
 
 function moveBackward(rover) {
-  if (rover.x >= 0 && rover.x < 10 && rover.y >= 0 && rover.y < 10) {
-    switch (rover.direction) {
-      case "N":
-        rover.y++;
-        break;
-      case "W":
-        rover.x++;
-        break;
-      case "S":
+  // **** BONUS 2 ****
+  switch (rover.direction) {
+    case "N":
+      rover.y++;
+      if (rover.y > 9) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.y--;
-        break;
-      case "E":
+        return;
+      }
+      break;
+    case "W":
+      rover.x++;
+      if (rover.x > 9) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
         rover.x--;
-        break;
-    }
-    console.log(`The ${rover.id} has moved backward`);
-    console.log(`The ${rover.id} is now at x:${rover.x}, y:${rover.y}`);
-
-    let newPosition = { x: rover.x, y: rover.y };
-    rover.travelLog.push(newPosition);
-  } else {
-    console.log(`The ${rover.id} can't leave the grid!!!`);
-    return;
+        return;
+      }
+      break;
+    case "S":
+      rover.y--;
+      if (rover.y < 0) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
+        rover.y++;
+        return;
+      }
+      break;
+    case "E":
+      rover.x--;
+      if (rover.x < 0) {
+        console.log("The Rover can't leave the grid!! this order will not be executed");
+        rover.x++;
+        return;
+      }
+      break;
   }
+  console.log(`The ${rover.id} has moved backward`);
+  console.log(`The ${rover.id} is now at x:${rover.x}, y:${rover.y}`);
+
+  let newPosition = { x: rover.x, y: rover.y };
+  rover.travelLog.push(newPosition);
 }
 
 function command(rover, orders) {
   for (let i = 0; i < orders.length; i++) {
     let order = orders[i];
-    if (order === "l" || order === "r" || order === "f" || order === "b") {
-      switch (order) {
-        case "l": // left
-          turnLeft(rover);
-          break;
-        case "r": // rigth
-          turnRight(rover);
-          break;
-        case "f": // fordward
-          moveForward(rover);
-          break;
-        case "b": // backward
-          moveBackward(rover);
-          break;
-      }
-    } else {
-      continue;
+    switch (order) {
+      case "l": // left
+        turnLeft(rover);
+        break;
+      case "r": // rigth
+        turnRight(rover);
+        break;
+      case "f": // fordward
+        moveForward(rover);
+        break;
+      case "b": // backward
+        moveBackward(rover);
+        break;
+      default:
+        // none of the above **** BONUS 3 ****
+        continue;
     }
   }
   console.log(`The ${rover.id} is facing ${rover.direction}`);
@@ -139,8 +174,8 @@ function command(rover, orders) {
 
 // ====== ROVER MOVEMENT / INSTRUCTIONS
 
-command(rover1, "f");
-command(rover2, "ffrtgfjhlcb");
+command(rover1, "r3fgruf");
+command(rover2, "fwqr34nfp");
 
 /* TO BE COMPLETED:
     Bonus 1 - Enforce boundaries
